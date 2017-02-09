@@ -1,0 +1,19 @@
+{
+  "name": "wes-song.com",
+  "version": "1.0.0",
+  "description": "Professional Website for wes-song.com",
+  "main": "server.js",
+  "repository": "https://github.com/enkhi77/wes-song.com.git",
+  "author": "Wesley Song <wes.song@gmail.com>",
+  "license": "GNU",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "6.9.2",
+    "npm": "3.10.9"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
