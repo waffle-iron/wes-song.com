@@ -16,6 +16,18 @@ const forceSSL = function() {
 };
 app.use(forceSSL());
 
+app.get('/angular1/*', function(req, res){
+    res.sendFile(path.join(__dirname + '/dist/angular1/index.html'));
+});
+
+app.get('/angular1/*', function(req, res){
+    res.sendFile(path.join(__dirname + '/dist/angular1/index.html'));
+});
+
+app.get('/react/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/dist/react/index.html'));
+});
+
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
