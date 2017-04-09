@@ -1,0 +1,24 @@
+version: '2'
+services:
+  web-server:
+    build: ./web-server
+    container_name: web-server
+    ports:
+     - "8123:8123"
+    links:
+     -resume-server:resume-server
+    depends_on:
+     - resume-server
+  resume-server:
+    build: ./resume-server
+    container_name: resume-server
+    ports:
+     - "8124:8124"
+    links:
+     - db:db
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db
+  db:
+    build: ./dockerdb
