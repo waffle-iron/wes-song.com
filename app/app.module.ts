@@ -3,25 +3,30 @@ import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AppComponent} from './app.component';
+import {ResumeModule} from './resume/resume.module';
 
-import {HomeComponent} from './home/home.component';
+import {AppComponent} from './app.component';
+import {MenuBarComponent} from './menu-bar.component';
 
 const routes: Routes = [
-    {path: '', component: HomeComponent, pathMatch: 'full'}
+    {path:'', redirectTo: 'resume', pathMatch: 'full'}
 ];
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        MenuBarComponent
     ],
     imports: [
+        //Angular Modules
         BrowserModule,
         CommonModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        
+        //Custom Modules
+        ResumeModule
     ],
     bootstrap: [AppComponent]
 })
 
-export class AppModule {
-}
+export class AppModule {}

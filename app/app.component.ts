@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+
+
 
 @Component({
     selector: 'app-root',
     styleUrls: ['app.component.scss'],
     template: `
-        <div>
-            {{ title }}
+        <div class="app">
+            <menu-bar></menu-bar>
+            <router-outlet></router-outlet>
         </div>
     `
 })
 
 export class AppComponent {
-    title: string;
-    
-    constructor () {
-        this.title = 'Wes-song.com';
-    }
+
 }
