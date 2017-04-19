@@ -1,1 +1,1 @@
-angular.module('app', ['ui.router', 'ui.bootstrap']);
+angular.module('app', ['ngSanitize', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'common', 'resume', 'about']);

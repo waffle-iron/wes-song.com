@@ -1,15 +1,22 @@
 (function () {
     'use strict';
-    function appRoute ($stateProvider) {
+    function appRoute ($stateProvider, $transitions) {
         $stateProvider
             .state({
+                abstract: true,
                 name: 'index',
                 url: '',
                 component: 'appComponent'
             });
     }
     
+    function appTransitions ($trace) {
+	    $trace.enable('TRANSITION');
+    }
+    
     angular.module('app')
-        .config(appRoute);
+        .config(appRoute)
+        .run(appTransitions);
     appRoute.$inject = ['$stateProvider'];
+	appTransitions.$inject = ['$trace'];
 })();

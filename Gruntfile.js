@@ -12,8 +12,12 @@ module.exports = function (grunt) {
             vendor: {
                 src: [
                     'node_modules/angular/angular.js',
+                    'node_modules/angular-sanitize/angular-sanitize.js',
+	                'node_modules/angular-animate/angular-animate.js',
                     'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
-                    'node_modules/angular-ui-router/release/'
+                    'node_modules/angular-ui-router/release/angular-ui-router.js',
+	                'node_modules/angular-ui-router/release/stateEvents.js',
+	                'node_modules/angular-ui-router/release/resolveService.js'
                 ],
                 dest: 'public/scripts/vendor.cat.js'
             },
@@ -21,19 +25,12 @@ module.exports = function (grunt) {
                 src: [
                     'app/**/*.module.js'
                 ],
-                dest: 'temp/module.cat.js'
+                dest: 'public/scripts/module.cat.js'
             },
             angularFiles: {
                 src: [
                     'app/**/*.js',
                     '!app/**/*.module.js'
-                ],
-                dest: 'temp/angular.cat.js'
-            },
-            final: {
-                src: [
-                    'module.cat.js',
-                    'angular.cat.js'
                 ],
                 dest: 'public/scripts/bundle.cat.js'
             }
@@ -65,7 +62,8 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         flatten: true,
-                        src:['']
+                        src:['node_modules/bootstrap/dist/css/bootstrap.css'],
+                        dest: 'public/styles'
                     }
                 ]
             }
@@ -97,7 +95,6 @@ module.exports = function (grunt) {
         'concat:vendor',
         'concat:angularModules',
         'concat:angularFiles',
-        'concat:final',
         'sass'
     ]);
 };

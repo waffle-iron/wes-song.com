@@ -1,10 +1,11 @@
 (function() {
     'use strict';
-    function appConfig($locationProvider) {
+    function appConfig($locationProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true);
+	    $urlRouterProvider.when('', '/resume');
     }
     
     angular.module('app')
         .config(appConfig);
-    appConfig.$inject = ['$locationProvider'];
+    appConfig.$inject = ['$locationProvider', '$urlRouterProvider'];
 })();

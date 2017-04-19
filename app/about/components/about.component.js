@@ -1,19 +1,20 @@
 (function () {
 	'use strict';
 	
-	const resume = {
-		controller: function() {
+	const about = {
+		controller: function () {
 			let ctrl = this;
 			
 			ctrl.$onInit = function () {};
 			ctrl.$postLink = function () {};
+			ctrl.$onChanges = function () {};
 		},
 		template: `<div class="container-fluid">
-    <div>Resume</div>
+    <div>About</div>
 </div>`
 	};
 	
-	angular.module('resume')
-		.component('resume', resume);
-	resume.$inject = [];
+	angular.module('about')
+		.component('about', about);
+	about.$inject = [];
 })();

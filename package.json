@@ -4,7 +4,7 @@
   "description": "Base build for wes-song.com",
   "scripts": {
     "build": "grunt build",
-    "start": "node"
+    "start": "node server.js"
   },
   "repository": {
     "url": "https://github.com/enkhi77/wes-song.com.git",
@@ -14,6 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-sanitize": "^1.6.4",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.0-rc.1",
     "body-parser": "^1.17.1",
