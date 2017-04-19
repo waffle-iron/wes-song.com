@@ -22,9 +22,7 @@
     "bootstrap": "^3.3.7",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
-    "morgan": "^1.8.1"
-  },
-  "devDependencies": {
+    "morgan": "^1.8.1",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.1.0",
@@ -32,5 +30,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0"
+  },
+  "devDependencies": {
   }
 }
