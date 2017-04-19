@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Base build for wes-song.com",
   "scripts": {
-    "postinstall": "grunt build",
+    "postinstall": "yarn install && grunt build",
     "start": "node server.js"
   },
   "repository": {
