@@ -1,3 +1,5 @@
-.idea/
-node_modules/
-.awcache/
+node_modules
+.idea
+.sass-cache
+public
+temp
