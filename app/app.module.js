@@ -1,1 +1,0 @@
-angular.module('app', ['ngSanitize', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'common', 'resume', 'about']);

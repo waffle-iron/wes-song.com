@@ -1,18 +1,20 @@
-(function () {
-	'use strict';
-	
-	const menu = {
-		controller: function (menuService) {
-			let ctrl = this;
-			
-			ctrl.$onInit = function () {
-				console.log('menu init');
-				menuService.getStates();
-			};
-			ctrl.$postLink = function () {};
-			ctrl.$onChanges = function () {};
-		},
-		template: `<div id="menu-container">
+export default {
+	controller: class menuCtrl {
+		/* @ngInject */
+		constructor  (menuService) {
+		
+		}
+		
+		$onInit () {
+			console.log('menu init');
+			menuService.getStates();
+		};
+		$postLink () {
+		};
+		$onChanges () {
+		};
+	},
+	template: `<div id="menu-container">
     <div id="menu-top">
     </div>
     <div class="list-group">
@@ -30,9 +32,4 @@
            class="list-group-item">Blog</a>
     </div>
 </div>`
-	};
-	
-	angular.module('common')
-		.component('menu', menu);
-	menu.$inject = ['menuService'];
-})();
+};
