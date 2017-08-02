@@ -25,6 +25,7 @@ const CLIENT_SCRIPTS_PATH = ['client/app/**/*.module.js', 'client/app/**/*.js'];
 const SERVER_SCRIPTS_PATH = 'server/**/*.js';
 const STYLE_PATH = 'client/sass/**/*.scss';
 const IMAGE_PATH = 'assets/images/*';
+const FONT_PATH = 'assets/fonts/*';
 const INDEX_PATH = 'assets/index.html';
 
 // Images
@@ -37,6 +38,13 @@ gulp.task('copyImages', function () {
 	console.log('---Starting Copy Images task---');
 	return gulp.src([IMAGE_PATH])
 		.pipe(gulp.dest('public/images'))
+		.pipe(livereload());
+});
+
+gulp.task('copyFonts', function () {
+	console.log('---Starting Copy Fonts task---');
+	return gulp.src([FONT_PATH])
+		.pipe(gulp.dest('public/fonts'))
 		.pipe(livereload());
 });
 
@@ -108,7 +116,7 @@ gulp.task('clean', function() {
 });
 
 // Default
-gulp.task('default', ['clean', 'copyImages', 'copyIndex', 'styles', 'vendorScripts','clientScripts', 'serverScripts'] ,function () {
+gulp.task('default', ['clean', 'copyFonts', 'copyImages', 'copyIndex', 'styles', 'vendorScripts','clientScripts', 'serverScripts'] ,function () {
 	console.log('---Starting Default task---');
 });
 
