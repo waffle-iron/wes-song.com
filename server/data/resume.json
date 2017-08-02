@@ -1,0 +1,93 @@
+{
+  "firstName": "Wesley",
+  "lastName": "Song",
+  "address" : "2991 W81st Ave Unit A",
+  "city": "Westminster",
+  "state": "CO",
+  "zipCode":  "80031",
+  "phone": "303-378-4436",
+  "skills": [
+    {
+      "name": "Javascript ES5",
+      "category": "",
+      "yearsExp": "3"
+    },
+    {
+      "name": "Angular 1.x",
+      "category": "",
+      "yearsExp": "3"
+    },
+    {
+      "name": "NodeJS",
+      "category": "",
+      "yearsExp": "1"
+    },
+    {
+      "name": "MongoDB",
+      "category": "",
+      "yearsExp": "1"
+    },
+    {
+      "name": "Grunt",
+      "category": "",
+      "yearsExp": ""
+    }
+  ],
+  "education": [
+    {
+      "school": "Greeley West High",
+      "city": "Greeley",
+      "state": "CO",
+      "graduation": "1994",
+      "degree": "HS Diploma"
+    },
+    {
+      "school": "University of Northern Colorado",
+      "city": "Greeley",
+      "state": "CO",
+      "graduation": "2006",
+      "degree": "BA History/Political Science"
+    },
+    {
+      "school": "RefactorU",
+      "city": "Boulder",
+      "state": "CO",
+      "graduation": "2013",
+      "degree": "Certificate of Completion"
+    }
+  ],
+  "workHistory": [
+    {
+      "company":"Aim Consulting/Starz",
+      "jobTitle":"Web Developer",
+      "dateStart": "",
+      "dateEnd": "",
+      "description": "",
+      "achievements": []
+    },
+    {
+      "company":"InteliSecure",
+      "jobTitle":"Software Engineer",
+      "dateStart": "",
+      "dateEnd": "",
+      "description": "",
+      "achievements": []
+    },
+    {
+      "company":"FlowHub",
+      "jobTitle":"Lead Front End Developer",
+      "dateStart": "",
+      "dateEnd": "",
+      "description": "",
+      "achievements": []
+    },
+    {
+      "company":"iMarketing",
+      "jobTitle":"Javascript Developer",
+      "dateStart": "",
+      "dateEnd": "",
+      "description": "",
+      "achievements": []
+    }
+  ]
+}

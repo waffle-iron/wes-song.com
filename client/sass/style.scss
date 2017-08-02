@@ -1,0 +1,15 @@
+// SCSS Mixins
+@import "mixins";
+
+// SCSS Variables
+@import "vars";
+
+// Layout
+@import "layout/layout";
+
+// Pages
+@import "pages/home";
+
+body {
+  background: #f7f7f7;
+}
