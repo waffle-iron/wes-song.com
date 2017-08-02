@@ -1,10 +1,10 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var morgan = require('morgan');
-var resume = './data/resume.json';
+let express = require('express');
+let app = express();
+let path = require('path');
+let bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
+let morgan = require('morgan');
+let resume = './data/resume.json';
 
 app.set('port', (process.env.PORT || 3000));
 

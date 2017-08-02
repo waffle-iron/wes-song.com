@@ -5,8 +5,7 @@ const bodyComponent = {
 	controller: function () {
 
 	},
-	template: `<div>Body</div>
-<ui-view></ui-view>`
+	template: `<ui-view></ui-view>`
 };
 
 angular.module('app.layout')

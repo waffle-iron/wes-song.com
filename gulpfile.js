@@ -1,4 +1,5 @@
 let gulp = require('gulp');
+let del = require('del');
 let gutil = require('gulp-util');
 let babel = require('gulp-babel');
 let concat = require('gulp-concat');
@@ -26,6 +27,11 @@ const STYLE_PATH = 'client/sass/**/*.scss';
 const IMAGE_PATH = 'assets/images/*';
 const INDEX_PATH = 'assets/index.html';
 
+// Images
+gulp.task('images', function () {
+	console.log('---Starting Images task---');
+});
+
 // Assets
 gulp.task('copyImages', function () {
 	console.log('---Starting Copy Images task---');
@@ -34,12 +40,14 @@ gulp.task('copyImages', function () {
 		.pipe(livereload());
 });
 
+// Index
 gulp.task('copyIndex', function () {
 	console.log('---Starting Copy Index task---');
 	return gulp.src([INDEX_PATH])
 		.pipe(gulp.dest('public'))
 		.pipe(livereload());
 });
+
 // Styles
 gulp.task('styles', function () {
 	console.log('---Starting Styles task---');
@@ -83,24 +91,29 @@ gulp.task('clientScripts', function () {
 gulp.task('serverScripts', function() {
 	console.log('---Starting Server Scripts task---');
 	return gulp.src([SERVER_SCRIPTS_PATH])
+		.pipe(babel({
+			presets: ['es2015']
+		}))
 		.pipe(concat('index.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest('./'))
 		.pipe(livereload());
 });
 
-// Images
-gulp.task('images', function () {
-	console.log('---Starting Images task---');
+gulp.task('clean', function() {
+	return del.sync([
+		'public/',
+		'index.js'
+	]);
 });
 
 // Default
-gulp.task('default', function () {
+gulp.task('default', ['clean', 'copyImages', 'copyIndex', 'styles', 'vendorScripts','clientScripts', 'serverScripts'] ,function () {
 	console.log('---Starting Default task---');
 });
 
 // Watch
-gulp.task('watch', function () {
+gulp.task('watch', ['default'], function () {
 	// gulp.('serverScripts');
 	console.log('---Starting Watch task---');
 	require('./index.js');

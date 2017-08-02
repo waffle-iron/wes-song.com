@@ -1,13 +1,11 @@
-// SCSS Mixins
 @import "mixins";
 
-// SCSS Variables
 @import "vars";
 
-// Layout
 @import "layout/layout";
+@import "layout/footer";
+@import "layout/header";
 
-// Pages
 @import "pages/home";
 
 body {

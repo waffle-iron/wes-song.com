@@ -4,7 +4,7 @@ const headerComponent = {
 
 	},
 	template: `<div class="container-menu">
-<div>Header</div>
+<menu-component></menu-component>
 </div>`
 };
 

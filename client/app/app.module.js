@@ -4,5 +4,6 @@ angular.module('app', [
 	'app.layout',
 	'app.home',
 	'app.about',
+	'app.resume',
 	'app.widget'
 ]);
