@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Base build for wes-song.com",
   "scripts": {
-    "build": "rimraf dist && webpack --bail --progress --profile",
-    "dev": "",
-    "start": "node server/server.js"
+    "build": "gulp",
+    "start": "node index.js"
   },
   "repository": {
     "url": "https://github.com/enkhi77/wes-song.com.git",

@@ -60,6 +60,10 @@
   // Suppress warnings about == null comparisons.
   "eqnull": true,
 
+  /*
+   * ADD GLOBALS
+   * =================
+   */
   "globals": {
     "angular": true
   }

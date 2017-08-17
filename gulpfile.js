@@ -116,13 +116,21 @@ gulp.task('clean', function() {
 });
 
 // Default
-gulp.task('default', ['clean', 'copyFonts', 'copyImages', 'copyIndex', 'styles', 'vendorScripts','clientScripts', 'serverScripts'] ,function () {
+gulp.task('default', [
+	'clean',
+	'copyFonts',
+	'copyImages',
+	'copyIndex',
+	'styles',
+	'vendorScripts',
+	'clientScripts',
+	'serverScripts'
+], function () {
 	console.log('---Starting Default task---');
 });
 
 // Watch
 gulp.task('watch', ['default'], function () {
-	// gulp.('serverScripts');
 	console.log('---Starting Watch task---');
 	require('./index.js');
 	livereload.listen();
@@ -131,9 +139,4 @@ gulp.task('watch', ['default'], function () {
 	gulp.watch(CLIENT_SCRIPTS_PATH, ['clientScripts']);
 	gulp.watch(STYLE_PATH, ['styles']);
 	gulp.watch(SERVER_SCRIPTS_PATH, ['serverScripts']);
-});
-
-// Serve
-gulp.task('serve', function () {
-	console.log('---Starting Serve task---');
 });
