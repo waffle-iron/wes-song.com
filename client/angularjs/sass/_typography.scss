@@ -1,31 +1,6 @@
 @font-face {
-  font-family: 'Museo Sans';
-  src: url('/assets/fonts/MuseoSansW00-100.eot');
-  src: url('/assets/fonts/MuseoSansW00-100.eot?#iefix') format('embedded-opentype'),
-  url('/assets/fonts/MuseoSansW00-100.woff') format('woff'),
-  url('/assets/fonts/MuseoSansW00-100.ttf') format('truetype'),
-  url('/assets/fonts/MuseoSansW00-100.svg') format('svg');
-  font-weight: 100;
+  @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,700');
 }
 
-@font-face {
-  font-family: 'Museo Sans';
-  src: url('/assets/fonts/MuseoSansW00-300.eot');
-  src: url('/assets/fonts/MuseoSansW00-300.eot?#iefix') format('embedded-opentype'),
-  url('/assets/fonts/MuseoSansW00-300.woff') format('woff'),
-  url('/assets/fonts/MuseoSansW00-300.ttf') format('truetype'),
-  url('/assets/fonts/MuseoSansW00-300.svg') format('svg');
-  font-weight: 300;
-}
 
-@font-face {
-  font-family: 'Museo Sans';
-  src: url('/assets/fonts/MuseoSansW00-500.eot');
-  src: url('/assets/fonts/MuseoSansW00-500.eot?#iefix') format('embedded-opentype'),
-  url('/assets/fonts/MuseoSansW00-500.woff') format('woff'),
-  url('/assets/fonts/MuseoSansW00-500.ttf') format('truetype'),
-  url('/assets/fonts/MuseoSansW00-500.svg') format('svg');
-  font-weight: 500;
-}
-
-$font-family-sans-serif: 'Museo Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-sans-serif: 'Fira Sans', sans-serif;

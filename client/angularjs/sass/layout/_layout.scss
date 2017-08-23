@@ -19,6 +19,7 @@ body {
     flex-direction: column;
     align-items: center;
     display: flex;
+    background-color: #262228;
 
     @include breakpoint($bp-768) {
       flex: 0 0 200px;

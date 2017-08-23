@@ -8,8 +8,11 @@
 @import "layout/footer";
 @import "layout/header";
 
+@import "widget/menu";
+
 @import "pages/home";
 
 body {
+  font-family: "Fira Sans", sans-serif;
   background: #f7f7f7;
 }

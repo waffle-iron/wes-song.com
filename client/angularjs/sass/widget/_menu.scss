@@ -1,0 +1,26 @@
+.menu-container {
+  width: 200px;
+
+  .title {
+    padding: 15px 0 0 15px;
+  }
+
+  .menu-box {
+    background-color: #31b0d5;
+    margin-top: 30px;
+
+    .menu-button {
+      padding: 15px 10px;
+      border-left: 5px solid #31b0d5;
+
+      &:hover {
+        border-left: 5px solid #007849;
+      }
+
+      &.active {
+        border-left: 5px solid #ffce00;
+        background-color: #007849;
+      }
+    }
+  }
+}
