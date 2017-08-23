@@ -19,9 +19,10 @@ const menuComponent = {
 	template: `<div class="menu-container">
     <div class="title">wes-song.com</div>
     <div class="menu-box">
-        <div class="menu-button" ng-repeat="link in $ctrl.menu" ui-sref-active="active">
-            <a ui-sref="{{link.state}}">{{link.title}}</a>
-        </div>
+        <a class="menu-button" 
+           ng-repeat="link in $ctrl.menu" 
+           ui-sref-active="active" 
+           ui-sref="{{link.state}}">{{link.title}}</a>
     </div>
 </div>`
 };
