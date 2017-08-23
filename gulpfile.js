@@ -224,7 +224,7 @@ gulp.task('serve', ['default'], function () {
 	gulp.watch(CONFIG.GATEWAY.IMAGES, ['copyImages']);
 	gulp.watch(CONFIG.ANGULARJS.INDEX, ['angularIndex']);
 	gulp.watch(CONFIG.ANGULARJS.SCRIPTS, ['angularScripts']);
-	gulp.watch(CONFIG.ANGULARJS.STYLES.PATH, ['angularStyle']);
+	gulp.watch(CONFIG.ANGULARJS.STYLES.PATH, ['angularStyles']);
 	// gulp.watch(CONFIG.REACT.INDEX, ['reactIndex']);
 	// gulp.watch(CONFIG.REACT.SCRIPTS, ['reactScripts']);
 	// gulp.watch(CONFIG.REACT.STYLES.PATH, ['reactStyle']);

@@ -14,12 +14,12 @@ const menuComponent = {
 				.catch(function (err) {
 					console.log('apiService err', err);
 				});
-		}
+		};
 	},
-	template: `<div>menu</div>
+	template: `<div class="title">wes-song.com</div>
 <div class="menu-box">
     <div class="menu-button" ng-repeat="link in $ctrl.menu" ui-sref-active="link.state">
-        {{link.title}}
+        <a ui-sref="link.state">{{link.title}}</a>
     </div>
 </div>`
 };
