@@ -11,7 +11,9 @@ const home = {
 		};
 		ctrl.$postLink = function () {};
 	},
-	template: `<h1>Home</h1>`
+	template: `<div class="body-container">
+    <h1>Home</h1>
+</div>`
 };
 
 angular.module('app.home')
