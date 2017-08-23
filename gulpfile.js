@@ -9,7 +9,7 @@ let sourceMaps = require('gulp-sourcemaps');
 let sass = require('gulp-sass');
 let autoprefixer = require('gulp-autoprefixer');
 let livereload = require('gulp-livereload');
-let angularjs = require('./build/angularjs.build');
+// let angularjs = require('./build/angularjs.build');
 
 // File paths
 const CONFIG = {
@@ -66,14 +66,6 @@ gulp.task('images', function () {
 gulp.task('copyImages', function () {
 	return gulp.src(CONFIG.GATEWAY.IMAGES)
 		.pipe(gulp.dest('public/images'))
-		.on('error', gutil.log)
-		.pipe(livereload());
-});
-
-// Fonts
-gulp.task('copyFonts', function () {
-	return gulp.src(CONFIG.GATEWAY.FONTS)
-		.pipe(gulp.dest('public/fonts'))
 		.on('error', gutil.log)
 		.pipe(livereload());
 });
@@ -144,47 +136,47 @@ gulp.task('angularIndex', function () {
 
 // React tasks
 
-gulp.task('reactVendorScripts', function () {
-	return gulp.src(CONFIG.REACT.VENDOR)
-		.pipe(concat('vendor.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('public/react/scripts'))
-		.on('error', gutil.log);
-});
-
-gulp.task('reactScripts', function () {
-	return gulp.src(CONFIG.REACT.SCRIPTS)
-		.pipe(sourceMaps.init())
-		.pipe(babel({
-			presets: ['es2015']
-		}))
-		.pipe(concat('angular.bundle.js'))
-		.pipe(uglify())
-		.pipe(sourceMaps.write())
-		.pipe(gulp.dest('public/react/scripts'))
-		.on('error', gutil.log)
-		.pipe(livereload());
-});
-
-gulp.task('reactStyles', function () {
-	return gulp.src(CONFIG.REACT.STYLES.MAIN)
-		.pipe(sourceMaps.init())
-		.pipe(autoprefixer())
-		.pipe(sass({
-			outputStyle: 'compressed'
-		}))
-		.pipe(sourceMaps.write())
-		.pipe(gulp.dest('public/react/styles'))
-		.on('error', gutil.log)
-		.pipe(livereload());
-});
-
-gulp.task('reactIndex', function () {
-	return gulp.src(CONFIG.REACT.INDEX)
-		.pipe(gulp.dest('public/react'))
-		.on('error', gutil.log)
-		.pipe(livereload());
-});
+// gulp.task('reactVendorScripts', function () {
+// 	return gulp.src(CONFIG.REACT.VENDOR)
+// 		.pipe(concat('vendor.js'))
+// 		.pipe(uglify())
+// 		.pipe(gulp.dest('public/react/scripts'))
+// 		.on('error', gutil.log);
+// });
+//
+// gulp.task('reactScripts', function () {
+// 	return gulp.src(CONFIG.REACT.SCRIPTS)
+// 		.pipe(sourceMaps.init())
+// 		.pipe(babel({
+// 			presets: ['es2015']
+// 		}))
+// 		.pipe(concat('angular.bundle.js'))
+// 		.pipe(uglify())
+// 		.pipe(sourceMaps.write())
+// 		.pipe(gulp.dest('public/react/scripts'))
+// 		.on('error', gutil.log)
+// 		.pipe(livereload());
+// });
+//
+// gulp.task('reactStyles', function () {
+// 	return gulp.src(CONFIG.REACT.STYLES.MAIN)
+// 		.pipe(sourceMaps.init())
+// 		.pipe(autoprefixer())
+// 		.pipe(sass({
+// 			outputStyle: 'compressed'
+// 		}))
+// 		.pipe(sourceMaps.write())
+// 		.pipe(gulp.dest('public/react/styles'))
+// 		.on('error', gutil.log)
+// 		.pipe(livereload());
+// });
+//
+// gulp.task('reactIndex', function () {
+// 	return gulp.src(CONFIG.REACT.INDEX)
+// 		.pipe(gulp.dest('public/react'))
+// 		.on('error', gutil.log)
+// 		.pipe(livereload());
+// });
 
 // Server Scripts
 gulp.task('serverScripts', function () {
@@ -210,7 +202,6 @@ gulp.task('clean', function () {
 // Default
 gulp.task('default', [
 	'clean',
-	'copyFonts',
 	'copyImages',
 	'gatewayIndex',
 	'gatewayStyles',
@@ -218,10 +209,6 @@ gulp.task('default', [
 	'angularIndex',
 	'angularScripts',
 	'angularStyles',
-	'reactVendorScripts',
-	'reactIndex',
-	'reactScripts',
-	'reactStyles',
 	'serverScripts'
 ], function () {
 	console.log('---Starting Default task---');
@@ -238,8 +225,8 @@ gulp.task('serve', ['default'], function () {
 	gulp.watch(CONFIG.ANGULARJS.INDEX, ['angularIndex']);
 	gulp.watch(CONFIG.ANGULARJS.SCRIPTS, ['angularScripts']);
 	gulp.watch(CONFIG.ANGULARJS.STYLES.PATH, ['angularStyle']);
-	gulp.watch(CONFIG.REACT.INDEX, ['reactIndex']);
-	gulp.watch(CONFIG.REACT.SCRIPTS, ['reactScripts']);
-	gulp.watch(CONFIG.REACT.STYLES.PATH, ['reactStyle']);
+	// gulp.watch(CONFIG.REACT.INDEX, ['reactIndex']);
+	// gulp.watch(CONFIG.REACT.SCRIPTS, ['reactScripts']);
+	// gulp.watch(CONFIG.REACT.STYLES.PATH, ['reactStyle']);
 	gulp.watch(CONFIG.SERVER.MAIN, ['serverScripts']);
 });
