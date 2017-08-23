@@ -9,24 +9,53 @@ let sourceMaps = require('gulp-sourcemaps');
 let sass = require('gulp-sass');
 let autoprefixer = require('gulp-autoprefixer');
 let livereload = require('gulp-livereload');
-let debug = require('gulp-debug');
+let angularjs = require('./build/angularjs.build');
 
 // File paths
-const VENDOR_SCRIPTS = [
-	'node_modules/angular/angular.js',
-	'node_modules/@uirouter/angularjs/release/angular-ui-router.js',
-	'node_modules/@uirouter/angularjs/release/resolveService.js',
-	'node_modules/@uirouter/angularjs/release/stateEvents.js',
-	'node_modules/angular-animate/angular-animate.js',
-	'node_modules/angular-aria/angular-aria.js',
-	'node_modules/angular-sanitize/angular-sanitize.js',
-];
-const CLIENT_SCRIPTS_PATH = ['client/app/**/*.module.js', 'client/app/**/*.js'];
-const SERVER_SCRIPTS_PATH = 'server/**/*.js';
-const STYLE_PATH = 'client/sass/**/*.scss';
-const IMAGE_PATH = 'assets/images/*';
-const FONT_PATH = 'assets/fonts/*';
-const INDEX_PATH = 'assets/index.html';
+const CONFIG = {
+	GATEWAY: {
+		IMAGES: 'assets/images/*',
+		FONTS: 'assets/fonts/*',
+		STYLES: {
+			PATH: 'assets/styles/**/*.scss',
+			MAIN: 'assets/styles/style.scss'
+		},
+		INDEX: 'assets/index.html'
+	},
+	ANGULARJS: {
+		VENDOR: [
+			'node_modules/angular/angular.js',
+			'node_modules/@uirouter/angularjs/release/angular-ui-router.js',
+			'node_modules/@uirouter/angularjs/release/resolveService.js',
+			'node_modules/@uirouter/angularjs/release/stateEvents.js',
+			'node_modules/angular-animate/angular-animate.js',
+			'node_modules/angular-aria/angular-aria.js',
+			'node_modules/angular-sanitize/angular-sanitize.js'
+		],
+		SCRIPTS: [
+			'client/angularjs/app/**/*.module.js',
+			'client/angularjs/app/**/*.js'
+		],
+		STYLES: {
+			MAIN: 'client/angularjs/sass/style.scss',
+			PATH: 'client/angularjs/sass/**/*.scss'
+		},
+		INDEX: 'client/angularjs/index.html'
+	},
+	REACT: {
+		VENDOR: [],
+		SCRIPTS: ['client/react/app/**/*.js'],
+		STYLES: {
+			MAIN: '',
+			PATH: 'client/react/sass/**/*.scss'
+		},
+		INDEX: 'client/react/index.html'
+	},
+	SERVER: {
+		MAIN: 'server/server.js',
+		PATH: 'server/**/*.js'
+	}
+};
 
 // Images
 gulp.task('images', function () {
@@ -35,31 +64,30 @@ gulp.task('images', function () {
 
 // Assets
 gulp.task('copyImages', function () {
-	console.log('---Starting Copy Images task---');
-	return gulp.src([IMAGE_PATH])
+	return gulp.src(CONFIG.GATEWAY.IMAGES)
 		.pipe(gulp.dest('public/images'))
+		.on('error', gutil.log)
 		.pipe(livereload());
 });
 
+// Fonts
 gulp.task('copyFonts', function () {
-	console.log('---Starting Copy Fonts task---');
-	return gulp.src([FONT_PATH])
+	return gulp.src(CONFIG.GATEWAY.FONTS)
 		.pipe(gulp.dest('public/fonts'))
+		.on('error', gutil.log)
 		.pipe(livereload());
 });
 
-// Index
-gulp.task('copyIndex', function () {
-	console.log('---Starting Copy Index task---');
-	return gulp.src([INDEX_PATH])
+// Gateway tasks
+gulp.task('gatewayIndex', function () {
+	return gulp.src(CONFIG.GATEWAY.INDEX)
 		.pipe(gulp.dest('public'))
+		.on('error', gutil.log)
 		.pipe(livereload());
 });
 
-// Styles
-gulp.task('styles', function () {
-	console.log('---Starting Styles task---');
-	return gulp.src('client/sass/style.scss')
+gulp.task('gatewayStyles', function () {
+	return gulp.src(CONFIG.GATEWAY.STYLES.MAIN)
 		.pipe(sourceMaps.init())
 		.pipe(autoprefixer())
 		.pipe(sass({
@@ -70,19 +98,17 @@ gulp.task('styles', function () {
 		.pipe(livereload());
 });
 
-// Vendor Scripts
-gulp.task('vendorScripts', function () {
-	console.log('---Starting Vendor Scripts task---');
-	return gulp.src(VENDOR_SCRIPTS)
+// Angular tasks
+gulp.task('angularVendorScripts', function () {
+	return gulp.src(CONFIG.ANGULARJS.VENDOR)
 		.pipe(concat('vendor.js'))
 		.pipe(uglify())
-		.pipe(gulp.dest('public/scripts'));
+		.pipe(gulp.dest('public/angularjs/scripts'))
+		.on('error', gutil.log);
 });
 
-// Client Scripts
-gulp.task('clientScripts', function () {
-	console.log('---Starting Client Scripts task---');
-	return gulp.src(CLIENT_SCRIPTS_PATH)
+gulp.task('angularScripts', function () {
+	return gulp.src(CONFIG.ANGULARJS.SCRIPTS)
 		.pipe(ngAnnotate())
 		.pipe(sourceMaps.init())
 		.pipe(babel({
@@ -91,24 +117,90 @@ gulp.task('clientScripts', function () {
 		.pipe(concat('angular.bundle.js'))
 		.pipe(uglify())
 		.pipe(sourceMaps.write())
-		.pipe(gulp.dest('public/scripts'))
+		.pipe(gulp.dest('public/angularjs/scripts'))
+		.on('error', gutil.log)
+		.pipe(livereload());
+});
+
+gulp.task('angularStyles', function () {
+	return gulp.src(CONFIG.ANGULARJS.STYLES.MAIN)
+		.pipe(sourceMaps.init())
+		.pipe(autoprefixer())
+		.pipe(sass({
+			outputStyle: 'compressed'
+		}))
+		.pipe(sourceMaps.write())
+		.pipe(gulp.dest('public/angularjs/styles'))
+		.on('error', gutil.log)
+		.pipe(livereload());
+});
+
+gulp.task('angularIndex', function () {
+	return gulp.src(CONFIG.ANGULARJS.INDEX)
+		.pipe(gulp.dest('public/angularjs'))
+		.on('error', gutil.log)
+		.pipe(livereload());
+});
+
+// React tasks
+
+gulp.task('reactVendorScripts', function () {
+	return gulp.src(CONFIG.REACT.VENDOR)
+		.pipe(concat('vendor.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('public/react/scripts'))
+		.on('error', gutil.log);
+});
+
+gulp.task('reactScripts', function () {
+	return gulp.src(CONFIG.REACT.SCRIPTS)
+		.pipe(sourceMaps.init())
+		.pipe(babel({
+			presets: ['es2015']
+		}))
+		.pipe(concat('angular.bundle.js'))
+		.pipe(uglify())
+		.pipe(sourceMaps.write())
+		.pipe(gulp.dest('public/react/scripts'))
+		.on('error', gutil.log)
+		.pipe(livereload());
+});
+
+gulp.task('reactStyles', function () {
+	return gulp.src(CONFIG.REACT.STYLES.MAIN)
+		.pipe(sourceMaps.init())
+		.pipe(autoprefixer())
+		.pipe(sass({
+			outputStyle: 'compressed'
+		}))
+		.pipe(sourceMaps.write())
+		.pipe(gulp.dest('public/react/styles'))
+		.on('error', gutil.log)
+		.pipe(livereload());
+});
+
+gulp.task('reactIndex', function () {
+	return gulp.src(CONFIG.REACT.INDEX)
+		.pipe(gulp.dest('public/react'))
+		.on('error', gutil.log)
 		.pipe(livereload());
 });
 
 // Server Scripts
-gulp.task('serverScripts', function() {
+gulp.task('serverScripts', function () {
 	console.log('---Starting Server Scripts task---');
-	return gulp.src([SERVER_SCRIPTS_PATH])
+	return gulp.src(CONFIG.SERVER.MAIN)
 		.pipe(babel({
 			presets: ['es2015']
 		}))
 		.pipe(concat('index.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest('./'))
+		.on('error', gutil.log)
 		.pipe(livereload());
 });
 
-gulp.task('clean', function() {
+gulp.task('clean', function () {
 	return del.sync([
 		'public/',
 		'index.js'
@@ -120,23 +212,34 @@ gulp.task('default', [
 	'clean',
 	'copyFonts',
 	'copyImages',
-	'copyIndex',
-	'styles',
-	'vendorScripts',
-	'clientScripts',
+	'gatewayIndex',
+	'gatewayStyles',
+	'angularVendorScripts',
+	'angularIndex',
+	'angularScripts',
+	'angularStyles',
+	'reactVendorScripts',
+	'reactIndex',
+	'reactScripts',
+	'reactStyles',
 	'serverScripts'
 ], function () {
 	console.log('---Starting Default task---');
 });
 
 // Watch
-gulp.task('watch', ['default'], function () {
+gulp.task('serve', ['default'], function () {
 	console.log('---Starting Watch task---');
 	require('./index.js');
 	livereload.listen();
-	gulp.watch(INDEX_PATH, ['copyIndex']);
-	gulp.watch(IMAGE_PATH, ['copyImage']);
-	gulp.watch(CLIENT_SCRIPTS_PATH, ['clientScripts']);
-	gulp.watch(STYLE_PATH, ['styles']);
-	gulp.watch(SERVER_SCRIPTS_PATH, ['serverScripts']);
+	gulp.watch(CONFIG.GATEWAY.INDEX, ['gatewayIndex']);
+	gulp.watch(CONFIG.GATEWAY.STYLES.PATH, ['gatewayStyles']);
+	gulp.watch(CONFIG.GATEWAY.IMAGES, ['copyImages']);
+	gulp.watch(CONFIG.ANGULARJS.INDEX, ['angularIndex']);
+	gulp.watch(CONFIG.ANGULARJS.SCRIPTS, ['angularScripts']);
+	gulp.watch(CONFIG.ANGULARJS.STYLES.PATH, ['angularStyle']);
+	gulp.watch(CONFIG.REACT.INDEX, ['reactIndex']);
+	gulp.watch(CONFIG.REACT.SCRIPTS, ['reactScripts']);
+	gulp.watch(CONFIG.REACT.STYLES.PATH, ['reactStyle']);
+	gulp.watch(CONFIG.SERVER.MAIN, ['serverScripts']);
 });

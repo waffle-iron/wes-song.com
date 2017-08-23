@@ -6,15 +6,19 @@ let cookieParser = require('cookie-parser');
 let morgan = require('morgan');
 let resume = './data/resume.json';
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', process.env.PORT || 5000);
 
 app.use(express.static('public'));
 
-app.get('/api/resume', function(req, res){
+app.get('/api/resume', function (req, res) {
     res.json(resume);
 });
 
-app.get('*', function(req, res){
+app.get('/angularjs/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/angularjs/index.html'));
+});
+
+app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
