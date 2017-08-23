@@ -4,6 +4,7 @@
   "description": "Base build for wes-song.com",
   "scripts": {
     "build": "gulp",
+    "postinstall": "gulp",
     "start": "node index.js"
   },
   "repository": {

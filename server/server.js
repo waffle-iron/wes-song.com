@@ -18,6 +18,10 @@ app.get('/angularjs/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/angularjs/index.html'));
 });
 
+app.get('/react/*', function (req, res) {
+	res.sendFile(path.join(__dirname, 'public/react/index.html'));
+});
+
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
